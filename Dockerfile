@@ -1,4 +1,4 @@
-FROM amazoncorretto: 18-alpine-jdk
+FROM amazoncorretto: 17
 MAINTAINER gonzaa
-COPY target/PruebaFinal-0.0.1-SNAPSHOT.jar docker-miportfolio.jar
-ENTRYPOINT ["java","-jar","/docker-miportfolio.jar"]
+COPY target/PruebaFinal-0.0.1-SNAPSHOT.jar PruebaFinal-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/PruebaFinal-0.0.1-SNAPSHOT.jar"]
