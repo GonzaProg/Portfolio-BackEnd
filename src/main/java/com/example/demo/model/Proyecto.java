@@ -12,7 +12,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Getter @Setter
 @Entity
 public class Proyecto {
     
@@ -22,46 +26,5 @@ public class Proyecto {
     private String titulo;
     private String descripcion;
     private String urlProyecto;
-    private Long persona_id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getUrlProyecto() {
-        return urlProyecto;
-    }
-
-    public void setUrlProyecto(String urlProyecto) {
-        this.urlProyecto = urlProyecto;
-    }
-
-    public Long getPersona_id() {
-        return persona_id;
-    }
-
-    public void setPersona_id(Long persona_id) {
-        this.persona_id = persona_id;
-    }
     
 }
