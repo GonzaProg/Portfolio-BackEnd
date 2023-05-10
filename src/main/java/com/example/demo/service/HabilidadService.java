@@ -9,13 +9,31 @@ package com.example.demo.service;
  * @author Gonzaa
  */
 
+import com.example.demo.dto.IHabilidadService;
+import com.example.demo.model.Habilidad;
 import com.example.demo.reposity.HabilidadRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class HabilidadService {
+public class HabilidadService implements IHabilidadService{
     @Autowired
     private HabilidadRepository habilidadRepository;
+
+    @Override
+    public void saveHabilidad(Habilidad habilidad) {
+        habilidadRepository.save(habilidad);
+    }
+
+    @Override
+    public void deleteHabilidad(Long id) {
+        habilidadRepository.deleteById(id);
+    }
+
+    @Override
+    public Habilidad findHabilidad(Long id) {
+        Habilidad habilidad = habilidadRepository.findById(id).orElse(null);
+        return habilidad;
+    }
             
 }
