@@ -8,6 +8,7 @@ import com.example.demo.dto.IRedSocialService;
 import com.example.demo.model.RedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,7 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RedSocialController {
     @Autowired IRedSocialService iredSocialService;
     
-    @PostMapping("redesSociales/crear")
+    @GetMapping("/redesSociales/traer/{id}")
+    public RedSocial findRedSocial(@PathVariable Long id){
+        return iredSocialService.findRedSocial(id);
+    }
+    
+    @PostMapping("/redesSociales/crear")
     public String createRedSocial(@RequestBody RedSocial redSocial){
         iredSocialService.saveRedSocial(redSocial);
         return "La Red Social fue creada correctamente";

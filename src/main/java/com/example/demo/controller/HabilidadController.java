@@ -8,6 +8,7 @@ import com.example.demo.dto.IHabilidadService;
 import com.example.demo.model.Habilidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,7 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HabilidadController {
     @Autowired IHabilidadService ihabilidadService;
     
-    @PostMapping("habilidades/crear")
+    @GetMapping("/habilidades/traer/{id}")
+    public Habilidad findHabilidad(@PathVariable Long id){
+        return ihabilidadService.findHabilidad(id);
+    }
+    
+    @PostMapping("/habilidades/crear")
     public String createHabilidad(@RequestBody Habilidad habilidad){
         ihabilidadService.saveHabilidad(habilidad);
         return "La habilidad fue creada correctamente";

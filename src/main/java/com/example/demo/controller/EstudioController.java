@@ -8,6 +8,7 @@ import com.example.demo.dto.IEstudioService;
 import com.example.demo.model.Estudio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,7 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class EstudioController {
     @Autowired IEstudioService iestudioService;
     
-    @PostMapping("estudios/crear")
+    @GetMapping("/estudios/traer/{id}")
+    public Estudio findEstudio(@PathVariable Long id){
+        return iestudioService.findEstudio(id);
+    }
+    
+    @PostMapping("/estudios/crear")
     public String createEstudio(@RequestBody Estudio estudio){
         iestudioService.saveEstudio(estudio);
         return "El estudio fue creado correctamente";

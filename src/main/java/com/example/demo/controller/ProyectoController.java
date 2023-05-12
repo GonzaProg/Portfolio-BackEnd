@@ -8,6 +8,7 @@ import com.example.demo.dto.IProyectoService;
 import com.example.demo.model.Proyecto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,7 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProyectoController {
     @Autowired IProyectoService iproyectoService;
     
-    @PostMapping("proyectos/crear")
+    @GetMapping("/proyectos/traer/{id}")
+    public Proyecto findProyecto(@PathVariable Long id){
+        return iproyectoService.findProyecto(id);
+    }
+    
+    @PostMapping("/proyectos/crear")
     public String createProyecto(@RequestBody Proyecto proyecto){
         iproyectoService.saveProyecto(proyecto);
         return "El Proyecto fue creado correctamente";
