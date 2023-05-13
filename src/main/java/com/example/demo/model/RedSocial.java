@@ -25,6 +25,7 @@ public class RedSocial {
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
     private String nombre;
+    private String urlSitioWeb;
     private String urlImagen;
     
 }

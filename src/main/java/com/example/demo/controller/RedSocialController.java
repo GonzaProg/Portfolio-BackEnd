@@ -45,11 +45,13 @@ public class RedSocialController {
     @PutMapping("/redesSociales/editar/{id}")
     public RedSocial editRedSocial(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,
-                               @RequestParam("urlImagen") String nuevaUrlImagen){
+                               @RequestParam("urlImagen") String nuevaUrlImagen,
+                               @RequestParam("urlSitioWeb") String nuevaUrlSitioWeb){
         RedSocial redSocial = iredSocialService.findRedSocial(id);
         
         redSocial.setNombre(nuevoNombre);
         redSocial.setUrlImagen(nuevaUrlImagen);
+        redSocial.setUrlSitioWeb(nuevaUrlSitioWeb);
         
         iredSocialService.saveRedSocial(redSocial);
         return redSocial;
