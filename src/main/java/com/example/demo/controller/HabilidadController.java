@@ -6,6 +6,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.IHabilidadService;
 import com.example.demo.model.Habilidad;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HabilidadController {
     @Autowired IHabilidadService ihabilidadService;
+    
+    @GetMapping("/habilidades/traerAll")
+    public List<Habilidad> getHabilidades(){
+        return ihabilidadService.getHabilidades();
+    }
     
     @GetMapping("/habilidades/traer/{id}")
     public Habilidad findHabilidad(@PathVariable Long id){

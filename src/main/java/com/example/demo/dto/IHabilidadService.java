@@ -5,6 +5,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.model.Habilidad;
+import java.util.List;
 
 /**
  *
@@ -12,6 +13,8 @@ import com.example.demo.model.Habilidad;
  */
 
 public interface IHabilidadService {
+    
+    public List<Habilidad> getHabilidades();
     
     public void saveHabilidad(Habilidad habilidad);
     

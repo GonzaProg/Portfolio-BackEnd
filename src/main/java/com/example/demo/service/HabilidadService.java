@@ -12,6 +12,7 @@ package com.example.demo.service;
 import com.example.demo.dto.IHabilidadService;
 import com.example.demo.model.Habilidad;
 import com.example.demo.reposity.HabilidadRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class HabilidadService implements IHabilidadService{
     @Autowired
     private HabilidadRepository habilidadRepository;
-
+    
+    @Override
+    public List<Habilidad> getHabilidades(){
+        List<Habilidad> habilidades = habilidadRepository.findAll();
+        return habilidades;
+    }
+    
     @Override
     public void saveHabilidad(Habilidad habilidad) {
         habilidadRepository.save(habilidad);
@@ -35,5 +42,5 @@ public class HabilidadService implements IHabilidadService{
         Habilidad habilidad = habilidadRepository.findById(id).orElse(null);
         return habilidad;
     }
-            
+
 }
