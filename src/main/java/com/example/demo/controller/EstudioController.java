@@ -48,7 +48,8 @@ public class EstudioController {
                                @RequestParam("institucion") String nuevaInstitucion,
                                @RequestParam("inicio") String nuevoInicio,
                                @RequestParam("fin") String nuevoFin,
-                               @RequestParam("descripcion") String nuevaDescripcion){
+                               @RequestParam("descripcion") String nuevaDescripcion,
+                               @RequestParam("urlTitulo") String nuevaUrlTitulo){
         Estudio estudio = iestudioService.findEstudio(id);
         
         estudio.setTitulo(nuevoTitulo);
@@ -56,6 +57,7 @@ public class EstudioController {
         estudio.setInicio(nuevoInicio);
         estudio.setFin(nuevoFin);
         estudio.setDescripcion(nuevaDescripcion);
+        estudio.setUrlTitulo(nuevaUrlTitulo);
         
         iestudioService.saveEstudio(estudio);
         return estudio;

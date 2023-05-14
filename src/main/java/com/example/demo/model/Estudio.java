@@ -28,5 +28,6 @@ public class Estudio {
     private String inicio;
     private String fin;
     private String descripcion;
+    private String urlTitulo;
 
 }
