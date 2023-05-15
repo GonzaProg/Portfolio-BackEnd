@@ -7,6 +7,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.IEstudioService;
 import com.example.demo.model.Estudio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,18 +31,21 @@ public class EstudioController {
         return iestudioService.findEstudio(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/estudios/crear")
     public String createEstudio(@RequestBody Estudio estudio){
         iestudioService.saveEstudio(estudio);
         return "El estudio fue creado correctamente";
     }
             
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/estudios/borrar/{id}")
     public String deleteEstudio(@PathVariable Long id){
         iestudioService.deleteEstudio(id);
         return "El estudio fue eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/estudios/editar/{id}")
     public Estudio editEstudio(@PathVariable Long id,
                                @RequestParam("titulo") String nuevoTitulo,

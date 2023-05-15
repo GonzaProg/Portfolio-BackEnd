@@ -7,6 +7,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.IRedSocialService;
 import com.example.demo.model.RedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,18 +31,21 @@ public class RedSocialController {
         return iredSocialService.findRedSocial(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/redesSociales/crear")
     public String createRedSocial(@RequestBody RedSocial redSocial){
         iredSocialService.saveRedSocial(redSocial);
         return "La Red Social fue creada correctamente";
     }
             
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/redesSociales/borrar/{id}")
     public String deleteRedSocial(@PathVariable Long id){
         iredSocialService.deleteRedSocial(id);
         return "La Red Social fue eliminada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/redesSociales/editar/{id}")
     public RedSocial editRedSocial(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,

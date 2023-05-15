@@ -7,6 +7,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.IProyectoService;
 import com.example.demo.model.Proyecto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,18 +31,21 @@ public class ProyectoController {
         return iproyectoService.findProyecto(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/proyectos/crear")
     public String createProyecto(@RequestBody Proyecto proyecto){
         iproyectoService.saveProyecto(proyecto);
         return "El Proyecto fue creado correctamente";
     }
             
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/proyectos/borrar/{id}")
     public String deleteProyecto(@PathVariable Long id){
         iproyectoService.deleteProyecto(id);
         return "El Proyecto fue eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/proyectos/editar/{id}")
     public Proyecto editProyecto(@PathVariable Long id,
                                @RequestParam("titulo") String nuevoTitulo,

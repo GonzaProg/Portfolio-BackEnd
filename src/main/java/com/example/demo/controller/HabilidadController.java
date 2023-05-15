@@ -8,6 +8,7 @@ import com.example.demo.dto.IHabilidadService;
 import com.example.demo.model.Habilidad;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,18 +37,21 @@ public class HabilidadController {
         return ihabilidadService.findHabilidad(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/habilidades/crear")
     public String createHabilidad(@RequestBody Habilidad habilidad){
         ihabilidadService.saveHabilidad(habilidad);
         return "La habilidad fue creada correctamente";
     }
             
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/habilidades/borrar/{id}")
     public String deleteHabilidad(@PathVariable Long id){
         ihabilidadService.deleteHabilidad(id);
         return "La habilidad fue eliminada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/habilidades/editar/{id}")
     public Habilidad editHabilidad(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,
